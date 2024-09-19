@@ -1,0 +1,98 @@
+.example-container {
+  height: 100vh;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+mat-sidenav {
+  width: 80px;
+  height: 100vh;
+  background-color: #3f51b5; /* Color de fondo coincidente con la barra superior */
+  color: #ffffff;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mat-nav-list {
+  width: 100%;
+  padding: 0;
+}
+
+.mat-list-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  width: 100%;
+  text-align: center;
+  color: #ffffff !important; /* Color del texto */
+}
+
+.mat-list-item:hover {
+  background-color: #5cc064; /* Color de fondo al pasar el ratón */
+}
+
+.mat-list-item mat-icon {
+  color: #ffffff !important; /* Color del icono */
+  font-size: 24px; /* Ajusta el tamaño del icono */
+}
+
+.menu-text {
+  font-size: 14px;
+  color: #ffffff !important; /* Color del texto */
+  margin-top: 10px; /* Separación entre el icono y el texto */
+}
+
+mat-sidenav-content {
+  flex: 1;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+
+mat-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+  background-color: #3f51b5; /* Asegúrate de que el color coincida con el sidenav */
+}
+
+/* Estilos para el sidenav expandido */
+mat-sidenav.expanded {
+  width: 250px;
+}
+
+mat-sidenav.expanded .mat-list-item {
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 10px 16px;
+}
+
+mat-sidenav.expanded .mat-list-item mat-icon {
+  margin-right: 16px;
+}
+
+mat-sidenav.expanded .mat-list-item .menu-text {
+  display: inline-block; /* Mostrar el texto cuando el sidenav está expandido */
+  color: #ffffff !important; /* Asegura que el texto sea blanco */
+}
+
+/* Estilos adicionales para el logo */
+.logo-container {
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  width: 100px;
+  height: auto;
+  border-radius: 8px; /* Borde redondeado */
+}

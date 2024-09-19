@@ -1,0 +1,30 @@
+.home-container {
+    text-align: center;
+    margin: 0 auto;
+    padding: 16px;
+  }
+  
+  .card-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .welcome-card {
+    width: 300px;
+    margin: 16px;
+  }
+  
+  mat-card-title {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  
+  mat-card-content {
+    font-size: 1.1em;
+  }
+  
+  mat-card-actions {
+    justify-content: center;
+  }
+  

@@ -1,0 +1,180 @@
+<div class="container" *ngIf="!showForm">
+  <h2 class="title">Usuarios</h2>
+  
+  <div class="header">
+    <button mat-raised-button color="primary" (click)="toggleForm()">Agregar Usuario</button>
+    <div class="spacer"></div>
+    <mat-slide-toggle color="primary" [checked]="mostrarActivos" (change)="toggleClientes()">
+      {{ mostrarActivos ? 'Mostrar Activos' : 'Mostrar Inactivos' }}
+    </mat-slide-toggle>
+    <mat-form-field class="search-field" appearance="outline">
+      <mat-label>Buscar Usuarios</mat-label>
+      <input matInput [(ngModel)]="searchTerm" (ngModelChange)="applyFilter()">
+      <button mat-icon-button matSuffix aria-label="Search">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> Id </th>
+      <td mat-cell *matCellDef="let cliente"> {{cliente.id}} </td>
+    </ng-container>
+    <ng-container matColumnDef="names">
+      <th mat-header-cell *matHeaderCellDef> Nombres </th>
+      <td mat-cell *matCellDef="let cliente"> {{cliente.names}} </td>
+    </ng-container>
+    <ng-container matColumnDef="last_names">
+      <th mat-header-cell *matHeaderCellDef> Apellidos </th>
+      <td mat-cell *matCellDef="let cliente"> {{cliente.last_names}} </td>
+    </ng-container>
+    <ng-container matColumnDef="document_type">
+      <th mat-header-cell *matHeaderCellDef> Tipo de Documento </th>
+      <td mat-cell *matCellDef="let cliente"> {{cliente.document_type}} </td>
+    </ng-container>
+    <ng-container matColumnDef="document_number">
+      <th mat-header-cell *matHeaderCellDef> Número de Documento </th>
+      <td mat-cell *matCellDef="let cliente"> {{cliente.document_number}} </td>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> Email </th>
+      <td mat-cell *matCellDef="let cliente"> {{cliente.email}} </td>
+    </ng-container>
+    <ng-container matColumnDef="phone">
+      <th mat-header-cell *matHeaderCellDef> Teléfono </th>
+      <td mat-cell *matCellDef="let cliente"> {{cliente.phone}} </td>
+    </ng-container>
+    <ng-container matColumnDef="birthdate">
+      <th mat-header-cell *matHeaderCellDef> Fecha de Nacimiento </th>
+      <td mat-cell *matCellDef="let cliente"> {{cliente.birthdate}} </td>
+    </ng-container>
+    <ng-container matColumnDef="state">
+      <th mat-header-cell *matHeaderCellDef> Estado </th>
+      <td mat-cell *matCellDef="let cliente"> {{cliente.state === 'A' ? 'Activo' : 'Inactivo'}} </td>
+    </ng-container>
+    <ng-container matColumnDef="acciones">
+      <th mat-header-cell *matHeaderCellDef> Acciones </th>
+      <td mat-cell *matCellDef="let cliente">
+        <button mat-icon-button color="primary" *ngIf="cliente.state === 'A'" (click)="editCliente(cliente)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" *ngIf="cliente.state === 'A'" (click)="deleteCliente(cliente.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-icon-button color="primary" *ngIf="cliente.state === 'I'" (click)="restoreCliente(cliente.id)">
+          <mat-icon>restore</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
+
+<div class="container" *ngIf="showForm">
+  <h2 class="title">{{ editingCliente ? 'Editar Usuario' : 'Agregar Usuario' }}</h2>
+  <form [formGroup]="clienteForm" (ngSubmit)="onSubmit()" class="form-container">
+    <div class="form-row">
+      <div class="form-column">
+        <mat-form-field appearance="outline">
+          <mat-label>Nombres</mat-label>
+          <input matInput formControlName="names" required>
+          <mat-error *ngIf="clienteForm.get('names')?.hasError('required')">
+            Los nombres son obligatorios.
+          </mat-error>
+          <mat-error *ngIf="clienteForm.get('names')?.hasError('pattern')">
+            Solo se permiten letras y espacios.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-column">
+        <mat-form-field appearance="outline">
+          <mat-label>Apellidos</mat-label>
+          <input matInput formControlName="last_names" required>
+          <mat-error *ngIf="clienteForm.get('last_names')?.hasError('required')">
+            Los apellidos son obligatorios.
+          </mat-error>
+          <mat-error *ngIf="clienteForm.get('last_names')?.hasError('pattern')">
+            Solo se permiten letras y espacios.
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-column">
+        <mat-form-field appearance="outline">
+          <mat-label>Tipo de Documento</mat-label>
+          <mat-select formControlName="document_type" required>
+            <mat-option value="DNI">DNI</mat-option>
+            <mat-option value="CNE">CNE</mat-option>
+          </mat-select>
+          <mat-error *ngIf="clienteForm.get('document_type')?.hasError('required')">
+            El tipo de documento es obligatorio.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-column">
+        <mat-form-field appearance="outline">
+          <mat-label>Número de Documento</mat-label>
+          <input matInput formControlName="document_number" required>
+          <mat-error *ngIf="clienteForm.get('document_number')?.hasError('required')">
+            El número de documento es obligatorio.
+          </mat-error>
+          <mat-error *ngIf="clienteForm.get('document_number')?.hasError('pattern')">
+            El número de documento no es válido.
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-column">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" required>
+          <mat-error *ngIf="clienteForm.get('email')?.hasError('required')">
+            El email es obligatorio.
+          </mat-error>
+          <mat-error *ngIf="clienteForm.get('email')?.hasError('email')">
+            Formato de correo no válido.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-column">
+        <mat-form-field appearance="outline">
+          <mat-label>Teléfono</mat-label>
+          <input matInput formControlName="phone" required>
+          <mat-error *ngIf="clienteForm.get('phone')?.hasError('required')">
+            El teléfono es obligatorio.
+          </mat-error>
+          <mat-error *ngIf="clienteForm.get('phone')?.hasError('pattern')">
+            El teléfono debe comenzar con 9 y tener 9 dígitos.
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-column">
+        <mat-form-field appearance="outline">
+          <mat-label>Fecha de Nacimiento</mat-label>
+          <input matInput [matDatepicker]="datePicker" formControlName="birthdate" required>
+          <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+          <mat-datepicker #datePicker></mat-datepicker>
+          <mat-error *ngIf="clienteForm.get('birthdate')?.hasError('required')">
+            La fecha de nacimiento es obligatoria.
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button mat-raised-button color="primary" type="submit">Guardar</button>
+      <button mat-raised-button (click)="toggleForm()" color="warn">Cancelar</button>
+    </div>
+  </form>
+</div>

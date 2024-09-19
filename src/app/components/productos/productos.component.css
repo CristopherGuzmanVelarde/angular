@@ -1,0 +1,76 @@
+/* Estilos para el formulario */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #3f51b5;
+  }
+  
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  
+  .form-column {
+    flex: 1;
+    min-width: 200px;
+    padding: 0 8px;
+  }
+  
+  .form-column mat-form-field {
+    width: 100%;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+  }
+  
+  button {
+    margin-left: 8px;
+  }
+  
+  button[type="submit"] {
+    background-color: #3f51b5;
+    color: #fff;
+  }
+  
+  /* Estilos para la lista */
+  .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  
+  .header h1 {
+    flex: 1 100%;
+    margin: 0;
+    color: #3f51b5;
+    font-size: 24px;
+  }
+  
+  .spacer {
+    flex: 1;
+  }
+  
+  .search-field {
+    max-width: 300px;
+    margin-left: 16px;
+  }
+  
+  mat-form-field.mat-form-field {
+    width: 100%;
+  }
+  
+  

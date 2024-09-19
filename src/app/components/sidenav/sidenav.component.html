@@ -1,0 +1,38 @@
+<mat-sidenav-container class="example-container" autosize>
+  <mat-sidenav mode="side" [class.expanded]="expanded" opened>
+    <div class="logo-container">
+      <img src="assets/logoC.png" alt="Logo" class="logo">
+    </div>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/home">
+        <mat-icon>home</mat-icon>
+        <span class="menu-text">Inicio</span>
+      </a>
+      <a mat-list-item routerLink="/clientes">
+        <mat-icon>people</mat-icon>
+        <span class="menu-text">Usuarios</span>
+      </a>
+      <a mat-list-item routerLink="/productos">
+        <mat-icon>inventory</mat-icon>
+        <span class="menu-text">Productos</span>
+      </a>
+      <a mat-list-item routerLink="/ordenes">
+        <mat-icon>receipt_long</mat-icon>
+        <span class="menu-text">Órdenes</span>
+      </a>
+      <a mat-list-item routerLink="/reservas">
+        <mat-icon>event</mat-icon>
+        <span class="menu-text">Reservas</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="toggleSidenav()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>CompuNet</span>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
