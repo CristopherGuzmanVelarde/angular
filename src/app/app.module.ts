@@ -23,7 +23,8 @@ import { ClientesComponent, ConfirmDialogComponent as ClientesConfirmDialogCompo
 import { ReservasComponent, ConfirmDialogComponent as ReservasConfirmDialogComponent } from './components/reservas/reservas.component';
 import { HomeComponent } from './components/home/home.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
-import { ProductosComponent } from './components/productos/productos.component';
+import { ProductsComponent } from './components/productos/productos.component';
+import { ConfirmDialogComponent as ProductsConfirmDialogComponent } from './components/productos/productos.component';
 import { OrdenesComponent } from './components/ordenes/ordenes.component';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -36,7 +37,8 @@ import { HttpClientModule } from '@angular/common/http';
     ReservasConfirmDialogComponent,
     HomeComponent,
     SidenavComponent,
-    ProductosComponent,
+    ProductsComponent,
+    ProductsConfirmDialogComponent,
     OrdenesComponent
   ],
   imports: [

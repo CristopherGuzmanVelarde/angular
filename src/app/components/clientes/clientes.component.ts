@@ -29,13 +29,11 @@ export class ClientesComponent implements OnInit {
   editingCliente: Cliente | null = null;
 
   clientes: Cliente[] = [
-    { id: 1, names: 'Juan', last_names: 'Perez Lazaro', document_type: 'DNI', document_number: '12345678', email: 'juan@example.com', phone: '963258741', birthdate: '01/01/1990', state: 'A' },
-    { id: 2, names: 'Ximena', last_names: 'Lozano Rivas', document_type: 'DNI', document_number: '12345678', email: 'juan@example.com', phone: '963258741', birthdate: '01/01/1990', state: 'A' },
-    { id: 3, names: 'Amelia', last_names: 'Garcia Lopez', document_type: 'DNI', document_number: '12345678', email: 'juan@example.com', phone: '963258741', birthdate: '01/01/1990', state: 'A' },
-    { id: 4, names: 'Ronaldo', last_names: 'Martinez Hernandez', document_type: 'DNI', document_number: '12345678', email: 'juan@example.com', phone: '963258741', birthdate: '01/01/1990', state: 'A' },
-    { id: 5, names: 'Axel', last_names: 'Castro Ramirez', document_type: 'DNI', document_number: '12345678', email: 'juan@example.com', phone: '963258741', birthdate: '01/01/1990', state: 'A' },
-    { id: 6, names: 'Stefany', last_names: 'Soto Mendoza', document_type: 'DNI', document_number: '12345678', email: 'juan@example.com', phone: '963258741', birthdate: '01/01/1990', state: 'A' },
-    { id: 7, names: 'Maria', last_names: 'Ortega Salazar', document_type: 'CNE', document_number: '87654321', email: 'maria@example.com', phone: '987654321', birthdate: '02/02/1992', state: 'A' }
+    { id: 1, names: 'Juan', last_names: 'Perez Lazaro', document_type: 'DNI', document_number: '12345678', email: 'juan@gmail.com', phone: '963258741', birthdate: '01/01/1990', state: 'A' },
+    { id: 2, names: 'Ximena', last_names: 'Lozano Rivas', document_type: 'DNI', document_number: '12345678', email: 'ximena@gmail.com', phone: '963258741', birthdate: '01/01/1990', state: 'A' },
+    { id: 3, names: 'Amelia', last_names: 'Garcia Lopez', document_type: 'DNI', document_number: '12345678', email: 'amelia@gmail.com', phone: '963258741', birthdate: '01/01/1990', state: 'A' },
+    { id: 4, names: 'Ronaldo', last_names: 'Martinez Hernandez', document_type: 'DNI', document_number: '12345678', email: 'ronaldo@gmail.com', phone: '963258741', birthdate: '01/01/1990', state: 'A' },
+    { id: 5, names: 'Maria', last_names: 'Ortega Salazar', document_type: 'CNE', document_number: '87654321', email: 'maria@gmail.com', phone: '987654321', birthdate: '02/02/1992', state: 'A' }
   ];
   displayedColumns: string[] = ['id', 'names', 'last_names', 'document_type', 'document_number', 'email', 'phone', 'birthdate', 'state', 'acciones'];
   dataSource: MatTableDataSource<Cliente> = new MatTableDataSource();
